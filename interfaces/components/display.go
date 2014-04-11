@@ -2,7 +2,7 @@ package components
 
 import (
 	"fmt"
-	"github.com/babymechanic/common/messages"
+	"github.com/babymechanic/motecommon/messages"
 )
 
 type Display struct {
