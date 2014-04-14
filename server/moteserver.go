@@ -1,8 +1,8 @@
-package main
+package server
 
 import (
 	"fmt"
-	"github.com/babymechanic/moteserver/interfaces/components"
+	"github.com/babymechanic/moteserver/components"
 	"github.com/golang/glog"
 	"net"
 	"net/http"
@@ -13,7 +13,7 @@ type MoteServer struct {
 	port int
 }
 
-func NewMoteServer(port int) *MoteServer {
+func New(port int) *MoteServer {
 	return &MoteServer{port}
 }
 

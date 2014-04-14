@@ -1,5 +1,9 @@
 package main
 
+import (
+	"github.com/babymechanic/moteserver/server"
+)
+
 func main() {
-	NewMoteServer(8080).Start()
+	server.New(8080).Start()
 }
