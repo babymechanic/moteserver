@@ -7,6 +7,7 @@ import (
 	"net"
 	"net/http"
 	"net/rpc"
+	"os"
 )
 
 type MoteServer struct {
@@ -24,6 +25,7 @@ func (server *MoteServer) Start() {
 	if err != nil {
 		fmt.Println("listen error: %s", err)
 		glog.Fatalf("listen error: %s", err)
+		os.Exit(1)
 	}
 	http.Serve(listen, nil)
 }
