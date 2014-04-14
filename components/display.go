@@ -17,3 +17,7 @@ func (display *Display) SetResolution(resolution messages.Resolution, _ *struct{
 	fmt.Println("setting rez as ", resolution.Height, " x ", resolution.Width)
 	return nil
 }
+
+func init() {
+	registeredComponents.Register("Display", &Display{})
+}
