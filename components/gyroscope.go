@@ -11,6 +11,7 @@ import (
 type Gyroscope struct {
 	bus            embd.I2CBus
 	gyro           *l3gd20.L3GD20
+	orientations   <-chan l3gd20.Orientation
 	wasInitialized bool
 }
 
@@ -21,11 +22,7 @@ func (gyroscope *Gyroscope) Orientation(_ struct{}, orientation *messages.Orient
 }
 
 func (gyroscope *Gyroscope) orientation() messages.Orientation {
-	orientations, err := gyroscope.gyro.Orientations()
-	if err != nil {
-		panic(err)
-	}
-	orientation := <-orientations
+	orientation := <-gyroscope.orientations
 	return messages.Orientation{X: orientation.X, Y: orientation.Y, Z: orientation.Z}
 }
 
@@ -39,6 +36,11 @@ func (gyroscope *Gyroscope) initialize() {
 	gyroscope.bus = embd.NewI2CBus(1)
 	gyroscope.gyro = l3gd20.New(gyroscope.bus, l3gd20.R250DPS)
 	gyroscope.gyro.Start()
+	orientations, err := gyroscope.gyro.Orientations()
+	if err != nil {
+		panic(err)
+	}
+	gyroscope.orientations = orientations
 	gyroscope.wasInitialized = true
 }
 
