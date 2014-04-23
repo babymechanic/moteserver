@@ -15,9 +15,8 @@ type Gyroscope struct {
 }
 
 func (gyroscope *Gyroscope) Orientation(_ struct{}, orientation *messages.Orientation) error {
-	// gyroscope.initialize()
-	// *orientation = gyroscope.orientation()
-	*orientation = messages.Orientation{X: 23.0, Y: 45.0, Z: 45.8}
+	gyroscope.initialize()
+	*orientation = gyroscope.orientation()
 	return nil
 }
 
