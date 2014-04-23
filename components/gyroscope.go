@@ -15,8 +15,9 @@ type Gyroscope struct {
 }
 
 func (gyroscope *Gyroscope) Orientation(_ struct{}, orientation *messages.Orientation) error {
-	gyroscope.initialize()
-	*orientation = gyroscope.orientation()
+	// gyroscope.initialize()
+	// *orientation = gyroscope.orientation()
+	*orientation = messages.Orientation{X: 23.0, Y: 45.0, Z: 45.8}
 	return nil
 }
 
@@ -42,7 +43,7 @@ func (gyroscope *Gyroscope) initialize() {
 	gyroscope.wasInitialized = true
 }
 
-func (gyroscope *Gyroscope) Destroy() {
+func (gyroscope *Gyroscope) close() {
 	gyroscope.gyro.Close()
 	gyroscope.bus.Close()
 	embd.CloseI2C()
