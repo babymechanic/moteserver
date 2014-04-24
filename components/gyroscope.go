@@ -27,7 +27,7 @@ func (gyroscope *Gyroscope) orientation() messages.Orientation {
 }
 
 func (gyroscope *Gyroscope) initialize() {
-	if !gyroscope.wasInitialized {
+	if gyroscope.wasInitialized {
 		return
 	}
 	if err := embd.InitI2C(); err != nil {
