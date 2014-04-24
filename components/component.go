@@ -12,5 +12,5 @@ var registeredComponents = RegisteredComponents{}
 func (registeredComponents RegisteredComponents) Register(name string, component interface{}) {
 	registeredComponents[name] = component
 	rpc.Register(component)
-	fmt.Println("regsitered component", name)
+	fmt.Println("registered component", name)
 }
